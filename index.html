@@ -1,269 +1,269 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        background: #000;
-        overflow: hidden;
-        --size: 200px;
-      }
+    <head>
+        <style>
+            body {
+                background: #000;
+                overflow: hidden;
+                --size: 200px;
+            }
 
-      .box {
-        --box-color: blue;
-        --gradient-degree: 45deg;
+            .box {
+                --box-color: blue;
+                --gradient-degree: 45deg;
 
-        z-index: 100;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: var(--size);
-        height: var(--size);
-        margin: auto;
-        animation: box-anim;
-        animation-duration: 60000ms;
-        animation-iteration-count: infinite;
-        animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
-        transform-style: preserve-3d;
-        transition: 100ms linear;
-      }
+                z-index: 100;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: var(--size);
+                height: var(--size);
+                margin: auto;
+                animation: box-anim;
+                animation-duration: 60000ms;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+                transform-style: preserve-3d;
+                transition: 100ms linear;
+                will-change: transform;
+            }
 
-      @keyframes box-anim {
-        from {
-          transform: rotate3d(0, 0, 0, 0deg);
-        }
-        to {
-          transform: rotate3d(0.8, 1.1, 0.95, 18000deg);
-        }
-      }
+            @keyframes box-anim {
+                from {
+                    transform: rotate3d(0, 0, 0, 0deg);
+                }
+                to {
+                    transform: rotate3d(0.8, 1.1, 0.95, 9000deg);
+                }
+            }
 
-      .box * {
-        --gradient-degree: 45deg;
+            .box * {
+                --gradient-degree: 45deg;
 
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: var(--box-color);
-        background: linear-gradient(
-          var(--gradient-degree),
-          var(--box-color),
-          transparent
-        );
-        box-shadow: 0 0 70px 20px var(--box-color);
-        transition: 100ms linear;
-        filter: hue-rotate(0deg);
-        animation: hue-animation;
-        animation-duration: 7500ms;
-        animation-iteration-count: infinite;
-      }
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--box-color);
+                background: linear-gradient(var(--gradient-degree), var(--box-color), transparent);
+                box-shadow: 0 0 70px 20px var(--box-color);
+                transition: 100ms linear;
+                filter: hue-rotate(0deg);
+                animation: hue-animation;
+                animation-duration: 7500ms;
+                animation-iteration-count: infinite;
+                will-change: filter;
+            }
 
-      @keyframes hue-animation {
-        0% {
-          filter: hue-rotate(0deg) contrast(1) brightness(1);
-        }
-        20% {
-          filter: hue-rotate(72deg) contrast(0.7) brightness(1.25);
-        }
-        40% {
-          filter: hue-rotate(144deg) contrast(1) brightness(1);
-        }
-        60% {
-          filter: hue-rotate(216deg) contrast(0.7) brightness(1.4);
-        }
-        80% {
-          filter: hue-rotate(288deg) contrast(1) brightness(1);
-        }
-        100% {
-          filter: hue-rotate(360deg) contrast(0.7) brightness(1.3);
-        }
-      }
+            @keyframes hue-animation {
+                0% {
+                    filter: hue-rotate(0deg) contrast(1) brightness(1);
+                }
+                20% {
+                    filter: hue-rotate(72deg) contrast(0.7) brightness(1.25);
+                }
+                40% {
+                    filter: hue-rotate(144deg) contrast(1) brightness(1);
+                }
+                60% {
+                    filter: hue-rotate(216deg) contrast(0.7) brightness(1.4);
+                }
+                80% {
+                    filter: hue-rotate(288deg) contrast(1) brightness(1);
+                }
+                100% {
+                    filter: hue-rotate(360deg) contrast(0.7) brightness(1.3);
+                }
+            }
 
-      .box-front {
-        transform: rotateY(0deg) translateZ(calc(var(--size) / 2));
-      }
-      .box-back {
-        transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
-      }
-      .box-top {
-        transform: rotateX(90deg) translateZ(calc(var(--size) / 2));
-      }
-      .box-bottom {
-        transform: rotateX(-90deg) translateZ(calc(var(--size) / 2));
-      }
-      .box-left {
-        transform: rotateY(90deg) translateZ(calc(var(--size) / 2));
-      }
-      .box-right {
-        transform: rotateY(-90deg) translateZ(calc(var(--size) / 2));
-      }
+            .box-front {
+                transform: rotateY(0deg) translateZ(calc(var(--size) / 2));
+            }
+            .box-back {
+                transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
+            }
+            .box-top {
+                transform: rotateX(90deg) translateZ(calc(var(--size) / 2));
+            }
+            .box-bottom {
+                transform: rotateX(-90deg) translateZ(calc(var(--size) / 2));
+            }
+            .box-left {
+                transform: rotateY(90deg) translateZ(calc(var(--size) / 2));
+            }
+            .box-right {
+                transform: rotateY(-90deg) translateZ(calc(var(--size) / 2));
+            }
 
-      .breathing-shadow {
-        --box-color: blue;
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        pointer-events: none;
-        animation: breathing-shadow;
-        animation-duration: 7500ms;
-        animation-iteration-count: infinite;
-        box-shadow: 0 0 calc(var(--size) * 0.75) var(--size) var(--box-color);
-        opacity: 0.4;
-        z-index: 1;
-        border-radius: 50%;
-      }
+            .breathing-shadow {
+                --box-color: blue;
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                pointer-events: none;
+                animation: breathing-shadow;
+                animation-duration: 7500ms;
+                animation-iteration-count: infinite;
+                will-change: transform, filter;
+                box-shadow: 0 0 calc(var(--size) * 0.75) var(--size) var(--box-color);
+                opacity: 0.4;
+                z-index: 1;
+                border-radius: 50%;
+            }
 
-      @keyframes breathing-shadow {
-        0% {
-          filter: hue-rotate(0deg) contrast(1) brightness(1);
-          transform: scale(1);
-        }
-        20% {
-          filter: hue-rotate(72deg) contrast(0.7) brightness(1.25);
-          transform: scale(1.2);
-        }
-        40% {
-          filter: hue-rotate(144deg) contrast(1) brightness(1);
-          transform: scale(1);
-        }
-        60% {
-          filter: hue-rotate(216deg) contrast(0.7) brightness(1.4);
-          transform: scale(1.2);
-        }
-        80% {
-          filter: hue-rotate(288deg) contrast(1) brightness(1);
-          transform: scale(1.1);
-        }
-        100% {
-          filter: hue-rotate(360deg) contrast(0.7) brightness(1.3);
-          transform: scale(1);
-        }
-      }
+            @keyframes breathing-shadow {
+                0% {
+                    filter: hue-rotate(0deg) contrast(1) brightness(1);
+                    transform: scale(1);
+                }
+                20% {
+                    filter: hue-rotate(72deg) contrast(0.7) brightness(1.25);
+                    transform: scale(1.2);
+                }
+                40% {
+                    filter: hue-rotate(144deg) contrast(1) brightness(1);
+                    transform: scale(1);
+                }
+                60% {
+                    filter: hue-rotate(216deg) contrast(0.7) brightness(1.4);
+                    transform: scale(1.2);
+                }
+                80% {
+                    filter: hue-rotate(288deg) contrast(1) brightness(1);
+                    transform: scale(1.1);
+                }
+                100% {
+                    filter: hue-rotate(360deg) contrast(0.7) brightness(1.3);
+                    transform: scale(1);
+                }
+            }
 
-      /** Randomizers below **/
+            /** Randomizers below **/
 
-      *[class^="randomizer"] {
-        position: absolute;
-        animation: randomizer-move;
-        animation-duration: 5000ms;
-        animation-iteration-count: infinite;
-        width: 10%;
-        height: 100vw;
-      }
+            *[class^="randomizer"] {
+                position: absolute;
+                animation: randomizer-move;
+                animation-duration: 5000ms;
+                animation-iteration-count: infinite;
+                width: 10%;
+                height: 100vw;
+                will-change: transform;
+            }
 
-      .randomizer-1 {
-        margin-left: 50%;
-      }
-      .randomizer-2 {
-        margin-left: 40%;
-      }
-      .randomizer-3 {
-        margin-left: 30%;
-      }
-      .randomizer-4 {
-        margin-left: 20%;
-      }
-      .randomizer-5 {
-        margin-left: 10%;
-      }
-      .randomizer-6 {
-        margin-left: 0;
-      }
-      .randomizer-7 {
-        margin-left: -10%;
-      }
-      .randomizer-7 {
-        margin-left: -20%;
-      }
-      .randomizer-8 {
-        margin-left: -30%;
-      }
-      .randomizer-9 {
-        margin-left: -40%;
-      }
-      .randomizer-1:hover ~ .box,
-      .randomizer-1:hover ~ .breathing-shadow {
-        --box-color: #f3a400;
-        --gradient-degree: 20deg;
-      }
-      .randomizer-2:hover ~ .box,
-      .randomizer-2:hover ~ .breathing-shadow {
-        --box-color: #f75100;
-        --gradient-degree: 40deg;
-      }
-      .randomizer-3:hover ~ .box,
-      .randomizer-3:hover ~ .breathing-shadow {
-        --box-color: #0299d9;
-        --gradient-degree: 60deg;
-      }
-      .randomizer-4:hover ~ .box,
-      .randomizer-4:hover ~ .breathing-shadow {
-        --box-color: #00ada5;
-        --gradient-degree: 80deg;
-      }
-      .randomizer-5:hover ~ .box,
-      .randomizer-5:hover ~ .breathing-shadow {
-        --box-color: #8bc34a;
-        --gradient-degree: 100deg;
-      }
-      .randomizer-6:hover ~ .box,
-      .randomizer-6:hover ~ .breathing-shadow {
-        --box-color: #9c27b0;
-        --gradient-degree: 120deg;
-      }
-      .randomizer-7:hover ~ .box,
-      .randomizer-7:hover ~ .breathing-shadow {
-        --box-color: #f44336;
-        --gradient-degree: 140deg;
-      }
-      .randomizer-8:hover ~ .box,
-      .randomizer-8:hover ~ .breathing-shadow {
-        --box-color: #00bcd4;
-        --gradient-degree: 160deg;
-      }
-      .randomizer-9:hover ~ .box,
-      .randomizer-9:hover ~ .breathing-shadow {
-        --box-color: #e91e63;
-        --gradient-degree: 180deg;
-      }
+            .randomizer-1 {
+                margin-left: 50%;
+            }
+            .randomizer-2 {
+                margin-left: 40%;
+            }
+            .randomizer-3 {
+                margin-left: 30%;
+            }
+            .randomizer-4 {
+                margin-left: 20%;
+            }
+            .randomizer-5 {
+                margin-left: 10%;
+            }
+            .randomizer-6 {
+                margin-left: 0;
+            }
+            .randomizer-7 {
+                margin-left: -10%;
+            }
+            .randomizer-7 {
+                margin-left: -20%;
+            }
+            .randomizer-8 {
+                margin-left: -30%;
+            }
+            .randomizer-9 {
+                margin-left: -40%;
+            }
+            .randomizer-1:hover ~ .box,
+            .randomizer-1:hover ~ .breathing-shadow {
+                --box-color: #f3a400;
+                --gradient-degree: 20deg;
+            }
+            .randomizer-2:hover ~ .box,
+            .randomizer-2:hover ~ .breathing-shadow {
+                --box-color: #f75100;
+                --gradient-degree: 40deg;
+            }
+            .randomizer-3:hover ~ .box,
+            .randomizer-3:hover ~ .breathing-shadow {
+                --box-color: #0299d9;
+                --gradient-degree: 60deg;
+            }
+            .randomizer-4:hover ~ .box,
+            .randomizer-4:hover ~ .breathing-shadow {
+                --box-color: #00ada5;
+                --gradient-degree: 80deg;
+            }
+            .randomizer-5:hover ~ .box,
+            .randomizer-5:hover ~ .breathing-shadow {
+                --box-color: #8bc34a;
+                --gradient-degree: 100deg;
+            }
+            .randomizer-6:hover ~ .box,
+            .randomizer-6:hover ~ .breathing-shadow {
+                --box-color: #9c27b0;
+                --gradient-degree: 120deg;
+            }
+            .randomizer-7:hover ~ .box,
+            .randomizer-7:hover ~ .breathing-shadow {
+                --box-color: #f44336;
+                --gradient-degree: 140deg;
+            }
+            .randomizer-8:hover ~ .box,
+            .randomizer-8:hover ~ .breathing-shadow {
+                --box-color: #00bcd4;
+                --gradient-degree: 160deg;
+            }
+            .randomizer-9:hover ~ .box,
+            .randomizer-9:hover ~ .breathing-shadow {
+                --box-color: #e91e63;
+                --gradient-degree: 180deg;
+            }
 
-      @keyframes randomizer-move {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(50vw, 0);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="randomizer-1"></div>
-    <div class="randomizer-2"></div>
-    <div class="randomizer-3"></div>
-    <div class="randomizer-4"></div>
-    <div class="randomizer-5"></div>
-    <div class="randomizer-6"></div>
-    <div class="randomizer-7"></div>
-    <div class="randomizer-8"></div>
-    <div class="randomizer-9"></div>
+            @keyframes randomizer-move {
+                0% {
+                    transform: translate(0, 0);
+                }
+                50% {
+                    transform: translate(50vw, 0);
+                }
+                100% {
+                    transform: translate(0, 0);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="randomizer-1"></div>
+        <div class="randomizer-2"></div>
+        <div class="randomizer-3"></div>
+        <div class="randomizer-4"></div>
+        <div class="randomizer-5"></div>
+        <div class="randomizer-6"></div>
+        <div class="randomizer-7"></div>
+        <div class="randomizer-8"></div>
+        <div class="randomizer-9"></div>
 
-    <div class="box">
-      <div class="box-front"></div>
-      <div class="box-back"></div>
-      <div class="box-top"></div>
-      <div class="box-bottom"></div>
-      <div class="box-left"></div>
-      <div class="box-right"></div>
-    </div>
-    <div class="breathing-shadow"></div>
-  </body>
+        <div class="box">
+            <div class="box-front"></div>
+            <div class="box-back"></div>
+            <div class="box-top"></div>
+            <div class="box-bottom"></div>
+            <div class="box-left"></div>
+            <div class="box-right"></div>
+        </div>
+        <div class="breathing-shadow"></div>
+    </body>
 </html>

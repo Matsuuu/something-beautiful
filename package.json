@@ -10,5 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "@web/dev-server": "0.0.15"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 120,
+    "semi": true
   }
 }
